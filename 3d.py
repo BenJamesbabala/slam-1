@@ -30,26 +30,33 @@ class Arista():
 '''
 AKA : wireframe
 '''
-class Estructura():
+class Wireframe():
     def __init__(self):
-        self.puntos = []
-        self.aristas = []
+        self.nodes = []
+        self.edges = []
 
     def addNode(self, node):
         #node = np.array(node)
-        self.puntos.append(node)
+        self.nodes.append(node)
 
     def addEdge(self, edge):
-        self.aristas.append(edge)
+        self.edges.append(edge)
 
     def getNodes(self):
-        return self.puntos
+        return self.nodes
 
     def getEdges(self):
-        return self.aristas
+        return self.edges
+    '''
+        origen es una coordenada (x,y,z)
+    '''
+    def createCube(self, origen, escale):
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        pass 
+
     pass
 
-mi_estructura = Estructura()
+mi_estructura = Wireframe()
 #mi_estructura.addNode([1,2,3])
 mi_estructura.addNode([0,0,0])
 mi_estructura.addNode([0,0,40])
@@ -71,8 +78,8 @@ for n in range(0,4):
     m += 2
 
 #np.set_printoptions(threshold='nan')
-print ((mi_estructura.puntos)) 
-print ((mi_estructura.aristas))
+print ((mi_estructura.nodes)) 
+print ((mi_estructura.edges))
 
 class Proyeccion():
     def __init__(self, width, height):
@@ -109,19 +116,16 @@ class Proyeccion():
         self.screen.fill(self.background)
         for wireframe in self.wireframe.values():
             if self.displayEdges:
-                for edge in wireframe.aristas:
+                for edge in wireframe.edges:
                     pygame.draw.aaline(self.screen, self.edgeColor, (edge[0], edge[0]) ,(edge[1], edge[1]),1)
                 
             if self.displayNodes:
-                for node in wireframe.puntos:
+                for node in wireframe.nodes:
                     pygame.draw.circle(self.screen, self.nodeColor, (int(node[0]), int(node[1])), self.nodeRadius, 0)
-
 
 '''
 todo : A better way to make a cube structure, no loops
 '''
-
-
 #if __name__ == "__main__":
 pv = Proyeccion(400, 300)
 pv.addEstructura('tmr',mi_estructura)
